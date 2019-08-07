@@ -79,7 +79,7 @@ foreach($companies->content as $company) {
 
 		if(	!($company_name == $element) &&
 			!preg_match("/$val1/i", $element) &&
-			!preg_match("/\[(.*)\] (.*)/i", preg_quote($element, "/"))
+			!preg_match("/\[(.*)\] (.*)/i", $element)
 			
 		) {
 
