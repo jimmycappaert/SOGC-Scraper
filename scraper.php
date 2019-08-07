@@ -7,7 +7,7 @@
 
 // Variables
 
-$params = array(	"limit"		=> 50,
+$params = array(	"limit"		=> 1000,
 			"startdate"	=> date("Y-m-d", strtotime("6 days ago")),
 			"enddate"	=> date("Y-m-d", strtotime("today")));
 
@@ -24,6 +24,7 @@ $curl = curl_init();
 curl_setopt_array($curl, 
 	[
 		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_TIMEOUT => 10,
 		CURLOPT_URL => "https://www.shab.ch/api/v1/publications?allowRubricSelection=true&includeContent=false&pageRequest.page=0&pageRequest.size={$params['limit']}&publicationDate.end={$params['enddate']}&publicationDate.start={$params['startdate']}&publicationStates=PUBLISHED&publicationStates=CANCELLED&searchPeriod=LAST7DAYS&subRubrics=HR01"
 	]
 );
@@ -51,6 +52,7 @@ foreach($companies->content as $company) {
 	curl_setopt_array($curl,
         	[
                 	CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_TIMEOUT => 10,
                 	CURLOPT_URL => "https://www.shab.ch/api/v1/publications/$company_id/view"
         	]
 	);
